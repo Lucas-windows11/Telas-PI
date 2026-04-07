@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login 1/6</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <!--Chamando javascript e tals-->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="../css/universal.css">
+  </head>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+  const buttons = document.querySelectorAll(".option-btn");
+  const continuar = document.getElementById("continuarBtn");
+  const inputOutra = document.getElementById("outraInput");
+  const area = document.getElementById("areaContinuar");
+  inputOutra.addEventListener("input", () => {
+          continuar.disabled = inputOutra.value.trim() === "";
+        });
+
+  buttons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      buttons.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      //se escolher o "Outra Instituição" vai abrir uma caixa para preencher
+      if (btn.innerText.includes("Outra")) {
+        area.classList.add("horizontal");
+        inputOutra.classList.remove("d-none");
+
+        //só libera continuar se escrever alguma coisa
+        continuar.disabled = true;
+        
+
+      } else {
+        area.classList.remove("horizontal");
+        inputOutra.classList.add("d-none");
+        continuar.disabled = false;
+      }
+      continuar.addEventListener("click", () => {
+  window.location.href = "login.html";
+});
+    });
+  });
+});
+</script>
+  <body class="d-flex justify-content-center align-items-center vh-100;" style="padding: 15px 0">
+    <div class="card" style="width: 350px; height: 550px; text-align: center;">
+  <div class="card-body">
+    <h4 class="card-title bold";>WATCH&LEARN</h4>
+    <p class="card-text fw-semibold">Aprenda inglês assistindo filmes e séries</p>
+
+    <p class="card-text fw-semibold">Qual é a sua instituição de ensino?</p>
+    
+    <button class="btn option-btn w-75 text-start mb-2 fw-semibold">English Academy</button>
+    <button class="btn option-btn w-75 text-start mb-2 fw-semibold">Global Language School</button>
+    <button class="btn option-btn w-75 text-start mb-2 fw-semibold">Fluent English Institute</button>
+    <button class="btn option-btn w-75 text-start mb-2 fw-semibold">Cambridge Learning Center</button>
+    <button class="btn option-btn w-75 text-start mb-2 fw-semibold">Oxford Language School</button>
+    <button class="btn option-btn w-75 text-start mb-2 fw-semibold">Smart English</button>
+    <button class="btn option-btn w-75 text-start mb-2 fw-semibold">Outra Instituição</button>
+  <div id="areaContinuar" class="mt-3 text-center">
+
+      <input 
+        type="text" 
+        id="outraInput" 
+        class="form-control mb-2 d-none"
+        placeholder="Digite a instituição">
+
+      <button id="continuarBtn" class="btn btn-primary" disabled>
+        Continuar
+      </button>
+
+  </div>
+    </div>
+      </div>
+    </div>
+      </body>
+    </html>
